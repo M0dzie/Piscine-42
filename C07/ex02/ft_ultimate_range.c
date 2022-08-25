@@ -9,30 +9,39 @@
 /*   Updated: 2022/07/26 13:01:18 by thmeyer          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include <stdlib.h>
 #include <stdio.h>
 
-int	ft_ultimate_range(int **range, int min, int max)
+int ft_ultimate_range(int **range, int min, int max)
 {
-	int *tab;
+    int         i;
+    long int    size;
 
-	if (min >= max)
-	{
-		*range = 0;
-		return (0);
-	}
-	*range = (int *)malloc(sizeof(int) * (max - min));
-	if (*range == 0)
-		return (-1);
-	return (range);
+    if (min >= max)
+    {
+        *range = 0;
+        return (0);
+    }
+    size = max - min;
+    *range = (int *)malloc(sizeof(int) * size);
+    if (!*range)
+        return (-1);
+    i = 0;
+    while (i < size)
+    {
+        (*range)[i] = min;
+        min++;
+        i++;
+    }
+    return (i);
 }
 
-int	main(void)
+int main(void)
 {
-	int	**range;
+    int min = -3;
+    int max = 30;
+    int *tab;
 
-	range = 0;
-	printf("%d", ft_ultimate_range(range, 10, 18));
-	return (0);
+    printf("%d", ft_ultimate_range(&tab, min, max));
+    return (0);
 }
